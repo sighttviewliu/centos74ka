@@ -8,7 +8,10 @@ shopt -s nullglob
 #    echo "/usr/sbin/init"
 #fi
 
+sh -c "echo 'enable ipvsadm.service' >> /usr/lib/systemd/system-preset/90-systemd.preset"
+sh -c "echo 'enable ipvsadm.service' >> /usr/lib/systemd/system-preset/90-default.preset"
 sh -c "sysctl -p"
+sh -c "ln -s /usr/lib/systemd/system/ipvsadm.service /etc/systemd/system/multi-user.target.wants/ipvsadm.service"
 #sh -c "ipvsadm"
 #exec "$@"
 exec "/usr/sbin/init"
