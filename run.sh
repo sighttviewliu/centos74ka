@@ -17,4 +17,4 @@ docker -D run -it --rm --name centoska74 --privileged -p 18880:80 -v $(pwd)/keep
 docker -D run -it --rm --name centoska74 --privileged -p 18880:80 -v $(pwd)/keepalived.conf:/etc/keepalived/keepalived.conf -v $(pwd)/sysctl.conf:/etc/sysctl.conf -v $(pwd)/ipvsadm:/etc/sysconfig/ipvsadm centoska:7.4 /usr/sbin/init
 
 ## For testing
-docker -D run -it --rm --name centoska74 --privileged -p 18880:80 -v $(pwd)/keepalived.conf:/etc/keepalived/keepalived.conf -v $(pwd)/sysctl.conf:/etc/sysctl.conf -v $(pwd)/ipvsadm:/etc/sysconfig/ipvsadm centoska:7.4
+docker -D run -it --rm --name centoska74 --privileged -p 18880:80 -v $(pwd)/keepalived.conf:/etc/keepalived/keepalived.conf -v $(pwd)/sysctl.conf:/etc/sysctl.conf -v $(pwd)/ipvsadm:/etc/sysconfig/ipvsadm -v $(pwd)/config:/etc/selinux/config centoska:7.4
