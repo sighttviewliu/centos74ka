@@ -1,0 +1,48 @@
+! Configuration File for keepalived
+
+global_defs {
+    router_id ka_2
+}
+vrrp_instance VI_1 {
+    state BACKUP
+    interface eth0
+    virtual_router_id 51
+    priority 90
+    nopreempt
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1234
+    }
+
+    virtual_ipaddress {
+        10.48.80.100
+    }
+}
+virtual_server 10.48.80.100 80 {
+    delay_loop 3
+    lvs_sched rr
+    lvs_method DR
+    protocol TCP
+
+    real_server 127.0.0.1 18080 {
+        weight 1
+        HTTP_GET {
+            url {
+                path /
+                status_code 200
+            }
+            connect_timeout 3
+        }
+    }
+    real_server 127.0.0.1 18080 {
+        weight 1
+        HTTP_GET {
+            url {
+                path /
+                status_code 200
+            }
+            connect_timeout 3
+        }
+    }
+}

@@ -1,0 +1,4 @@
+AUTO="true"
+DAEMON="backup"
+IFACE="eth0"
+SYNCID="1"
