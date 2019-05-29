@@ -1,9 +1,9 @@
 ! Configuration File for keepalived
 
 global_defs {
-    router_id ka_1
+    router_id ka_lvs_1
 }
-vrrp_instance VI_1 {
+vrrp_instance VI {
     state MASTER
     interface eth0
     virtual_router_id 51
@@ -16,7 +16,8 @@ vrrp_instance VI_1 {
     }
 
     virtual_ipaddress {
-        10.48.80.100
+        10.48.80.100 dev eth0
+        192.168.100.100 dev eth1
     }
 }
 virtual_server 10.48.80.100 80 {
@@ -25,7 +26,8 @@ virtual_server 10.48.80.100 80 {
     lvs_method DR
     protocol TCP
 
-    real_server 127.0.0.1 18080 {
+    ## business server #1
+    real_server 127.0.0.1 80 {
         weight 1
         HTTP_GET {
             url {
@@ -35,7 +37,8 @@ virtual_server 10.48.80.100 80 {
             connect_timeout 3
         }
     }
-    real_server 127.0.0.1 18080 {
+    ## business server #2
+    real_server 127.0.0.1 80 {
         weight 1
         HTTP_GET {
             url {
