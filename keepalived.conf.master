@@ -17,9 +17,9 @@ vrrp_instance VI {
 
     virtual_ipaddress {
         ## user side
-        10.48.80.29 dev eth0
+        10.48.80.29 dev eth1
         ## inner side
-        192.168.100.129 dev eth1
+        192.168.100.129 dev eth0
     }
 }
 ## follow user side
